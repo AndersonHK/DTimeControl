@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\SnapOut\1.5\Assemblies</OutputPath>
+    <OutputPath>..\..\SnapOut\1.6\Assemblies</OutputPath>
     <TargetFramework>net48</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.5.1</FileVersion>
+    <FileVersion>1.6.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
@@ -19,7 +19,8 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <Reference Include="SnapOut">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\1319782555\1.4\Assemblies\SnapOut.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\1319782555\1.6\Assemblies\SnapOut.dll</HintPath>
+	  <HintPath>D:\Games\SteamLibrary\steamapps\workshop\content\294100\1319782555\1.6\Assemblies\SnapOut.dll</HintPath>
       <CopyLocal>False</CopyLocal>
       <Private>false</Private>
     </Reference>

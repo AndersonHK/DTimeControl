@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace DTimeControl.Core_Patches.Pawn_Timer_Adjustments;
 
-[HarmonyPatch(typeof(Pawn_MindState), nameof(Pawn_MindState.MindStateTick))]
+[HarmonyPatch(typeof(Pawn_MindState), nameof(Pawn_MindState.MindStateTickInterval))] //AHK: Was MindStateTick, BROKEN 1.6
 internal class Patch_MindStateTick_Postfix
 {
     public static void Postfix(Pawn_MindState __instance)

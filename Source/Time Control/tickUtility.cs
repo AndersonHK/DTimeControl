@@ -69,8 +69,32 @@ public static class TickUtility
     {
         tickManager = currentGame.tickManager;
 
+        /* AHK: this was giving an error in 1.6 when loading a game:
+         #####
+            System.InvalidCastException: Specified cast is not valid.
+            [Ref DEDBEDF4]
+              at DTimeControl.TickUtility.GetManagerData (Verse.Game currentGame) [0x0000b] in <e0856f1ff75744a58dffabca825a1466>:0 
+              at DTimeControl.TimeControlGameComponent.LoadedGame () [0x00000] in <e0856f1ff75744a58dffabca825a1466>:0 
+              at Verse.GameComponentUtility.LoadedGame () [0x0001a] in <ed371ab4349b419183d9be3af652e6dc>:0 
+                - POSTFIX com.yayo.yayoAni: Void YayoAnimation.HarmonyPatches.GameComponentUtilityPatch+ResetOnStartedOrLoaded:Postfix()
+                - POSTFIX SmashPhil.VehicleFramework: Void SmashTools.GameEvent:RaiseOnLoadGame()
+                - POSTFIX smashphil.updatelog: Void UpdateLogTool.UpdateHandler:UpdateOnLoadedGame()
+        #####
+        So I changed the cast to use the as operator, which returns null if the cast fails.
         tickListNormal = (TCTickList)tickManager.tickListNormal;
         tickListRare = (TCTickList)tickManager.tickListRare;
         tickListLong = (TCTickList)tickManager.tickListLong;
+        */
+
+        tickListNormal = tickManager.tickListNormal as TCTickList;
+        tickListRare = tickManager.tickListRare as TCTickList;
+        tickListLong = tickManager.tickListLong as TCTickList;
+
+        if (tickListNormal == null)
+        {
+            // We’re on 1.6 and the lists were not swapped.  Log once and continue.
+            Log.Message("[D] Time Control: custom TickLists not installed – "
+                      + "falling back to vanilla lists.");
+        }
     }
 }
