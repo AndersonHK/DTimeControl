@@ -9,6 +9,6 @@ internal class Patch_PatherTick_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "PatherTick");
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "PatherTick");
     }
 }

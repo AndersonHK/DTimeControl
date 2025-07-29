@@ -9,6 +9,6 @@ internal class Patch_StartFleeingBecauseOfPawnAction_Transpiler //AHK: Was Patch
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "StartFleeingBecauseOfPawnAction"); //AHK: Was CanStartFleeingBecauseOfPawnAction
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "StartFleeingBecauseOfPawnAction"); //AHK: Was CanStartFleeingBecauseOfPawnAction
     }
 }

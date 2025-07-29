@@ -10,7 +10,7 @@ public class TimeControlGameComponent(Game game) : GameComponent
     {
         TickUtility.GetManagerData(game);
         TickUtility.adjustedTicksGameInt = adjustedTicks;
-        TimeControlBase.SetCycleLength();
+        //TimeControlBase.SetCycleLength();
         base.StartedNewGame();
     }
 
@@ -18,7 +18,7 @@ public class TimeControlGameComponent(Game game) : GameComponent
     {
         TickUtility.GetManagerData(game);
         TickUtility.adjustedTicksGameInt = adjustedTicks;
-        TimeControlBase.SetCycleLength();
+        //TimeControlBase.SetCycleLength();
         base.LoadedGame();
     }
 

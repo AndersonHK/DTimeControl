@@ -9,6 +9,6 @@ internal class Patch_BestPathHadPawnsInTheWayRecently_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "BestPathHadPawnsInTheWayRecently");
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "BestPathHadPawnsInTheWayRecently");
     }
 }

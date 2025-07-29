@@ -9,6 +9,14 @@
     <FileVersion>1.6</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Core Patches\Pawn Timer Adjustments\**" />
+    <EmbeddedResource Remove="Core Patches\Pawn Timer Adjustments\**" />
+    <None Remove="Core Patches\Pawn Timer Adjustments\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="TCTickList.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>

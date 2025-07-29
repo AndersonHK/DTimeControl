@@ -9,6 +9,6 @@ internal class Patch_BestPathHadDangerRecently_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "BestPathHadDangerRecently");
+        return instructions; //  GenericTickReplacer.ReplaceTicks(instructions, "BestPathHadDangerRecently");
     }
 }

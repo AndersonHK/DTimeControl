@@ -9,6 +9,6 @@ internal class Patch_TrySetNewPath_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "TrySetNewPath");
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "TrySetNewPath");
     }
 }

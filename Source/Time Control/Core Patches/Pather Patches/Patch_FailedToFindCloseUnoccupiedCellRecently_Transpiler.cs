@@ -9,6 +9,6 @@ internal class Patch_FailedToFindCloseUnoccupiedCellRecently_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "FailedToFindCloseUnoccupiedCellRecently");
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "FailedToFindCloseUnoccupiedCellRecently");
     }
 }

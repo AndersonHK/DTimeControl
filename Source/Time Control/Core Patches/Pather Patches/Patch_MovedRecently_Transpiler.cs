@@ -9,6 +9,6 @@ internal class Patch_MovedRecently_Transpiler
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
-        return GenericTickReplacer.ReplaceTicks(instructions, "MovedRecently");
+        return instructions; // return GenericTickReplacer.ReplaceTicks(instructions, "MovedRecently");
     }
 }

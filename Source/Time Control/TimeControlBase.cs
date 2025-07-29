@@ -12,7 +12,7 @@ public static class TimeControlBase
 {
     public static double partialTick;
 
-    public static int cycleLength = 1;
+    //public static int cycleLength = 1;
 
     public static readonly HashSet<Type> ExcludedListOfJobDrivers;
 
@@ -57,6 +57,7 @@ public static class TimeControlBase
         ExcludedListOfJobDrivers = excludeList;
     }
 
+    /* AHK: Removed old tick list behavior 
     public static void SetCycleLength()
     {
         if (Current.Game == null)
@@ -64,6 +65,7 @@ public static class TimeControlBase
             return;
         }
 
+        
         cycleLength = 1.0 / TimeControlSettings.speedMultiplier > 1
             ? Mathf.RoundToInt(1.0f / TimeControlSettings.speedMultiplier)
             : 1;
@@ -72,6 +74,7 @@ public static class TimeControlBase
         TickUtility.tickListRare.cycleStep = 0;
         TickUtility.tickListLong.cycleStep = 0;
     }
+    */
 
     public static void TickManagerTick(TickManager tm, bool firstRun = true)
     {
@@ -111,10 +114,10 @@ public static class TimeControlBase
             }
         }
 
-        Shader.SetGlobalFloat(ShaderPropertyIDs.GameSeconds, tm.TicksGame.TicksToSeconds() * mult);
-        TickUtility.tickListNormal.DoTick(partialTick, firstRun);
-        TickUtility.tickListRare.DoTick(partialTick, firstRun);
-        TickUtility.tickListLong.DoTick(partialTick, firstRun);
+        Shader.SetGlobalFloat(ShaderPropertyIDs.GameSeconds, tm.TicksGame.TicksToSeconds() * mult); //AHK: Removed old tick list behavior
+        //TickUtility.tickListNormal.DoTick(partialTick, firstRun);
+        //TickUtility.tickListRare.DoTick(partialTick, firstRun);
+        //TickUtility.tickListLong.DoTick(partialTick, firstRun);
         if (partialTick >= 1.0)
         {
             try

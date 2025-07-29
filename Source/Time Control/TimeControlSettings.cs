@@ -49,7 +49,7 @@ public class TimeControlSettings : ModSettings
         }
 
         speedMultiplier = Mathf.Clamp(speedMultiplier, min / 100f, max / 100f);
-        TimeControlBase.SetCycleLength();
+        //TimeControlBase.SetCycleLength();
     }
 
     public static void DrawSettings(Rect rect)
