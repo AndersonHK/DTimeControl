@@ -24,7 +24,7 @@ public static class Patch_UpdateRateTicks
     static void Postfix(ref int __result)
     {
         float S = TimeControlSettings.speedMultiplier;
-        if (S <= 1f) return;
+        if (S == 1f) return;
 
         int min = Math.Min(15, (int)Math.Ceiling(S));
         if (__result < min) __result = min;
@@ -41,7 +41,7 @@ public static class Patch_Pawn_TickInterval
     static void Prefix(ref int delta, Pawn __instance)
     {
         float S = TimeControlSettings.speedMultiplier;
-        if (S <= 1f) return;
+        if (S == 1f) return; // Only skip scaling if S is exactly 1
 
         var acc = Accu.GetOrCreateValue(__instance);
         double tgt = delta / S + acc.carry;
@@ -62,10 +62,10 @@ public static class Patch_Pawn_TickInterval
 [HarmonyPatch(typeof(Toils_Ingest), nameof(Toils_Ingest.ChewIngestible))]
 public static class Patch_ScaleWork
 {
-    static void Prefix(ref float chewDurationMultiplier)
+    static void Prefix(ref float durationMultiplier)
     {
         if (TimeControlSettings.slowWork) return;  // keep vanilla pace if user wants
         float S = TimeControlSettings.speedMultiplier;
-        if (S > 1f) chewDurationMultiplier *= S;
+        if (S > 1f) durationMultiplier *= S;
     }
 }
