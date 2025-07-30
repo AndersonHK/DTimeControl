@@ -153,7 +153,7 @@ namespace DTimeControl
     {
         static void Prefix(ref int numTicks) => ScaleUtil.DivTicks(ref numTicks);
     }
-    /*
+    /* didn't seem necessary, causing compile errors if uncommented
     [HarmonyPatch(typeof(GenDate), nameof(GenDate.TicksToPeriod), new[] { typeof(int), typeof(int).MakeByRefType(), typeof(int).MakeByRefType(), typeof(int).MakeByRefType(), typeof(float).MakeByRefType() })]
     class M_TicksToPeriodInt
     {
@@ -164,5 +164,18 @@ namespace DTimeControl
     class M_TicksToPeriodLong
     {
         static void Prefix(ref long numTicks) => ScaleUtil.DivTicks(ref numTicks);
+    }*/
+
+    /* didn't work, but rather it broke the date readouts again
+    [HarmonyPatch(typeof(GenDate), nameof(GenDate.LocalTicksOffsetFromLongitude))]
+    static class Patch_LocalOffset
+    {
+        static void Postfix(ref long __result)
+        {
+            float m = TimeControlSettings.speedMultiplier;
+            if (Mathf.Abs(m - 1f) < 0.001f) return;
+
+            __result = (long)(__result / m);
+        }
     }*/
 }

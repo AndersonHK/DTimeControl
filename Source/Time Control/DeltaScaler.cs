@@ -66,6 +66,6 @@ public static class Patch_ScaleWork
     {
         if (TimeControlSettings.slowWork) return;  // keep vanilla pace if user wants
         float S = TimeControlSettings.speedMultiplier;
-        if (S > 1f) durationMultiplier *= S;
+        durationMultiplier *= S;
     }
 }
