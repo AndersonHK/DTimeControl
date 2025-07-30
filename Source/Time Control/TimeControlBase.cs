@@ -73,12 +73,12 @@ public static class TimeControlBase
         TickUtility.tickListLong.cycleStep = 0;
     }
 
-    public static void TickManagerTick(TickManager tm, bool firstRun = true)
+    public static void TickManagerTick(TickManager tm, int delta, bool firstRun = true)
     {
         var mult = TimeControlSettings.speedMultiplier;
         if (firstRun)
         {
-            partialTick += 1.0 / mult;
+            partialTick += delta / mult;
         }
 
         var maps = Find.Maps;
@@ -112,9 +112,15 @@ public static class TimeControlBase
         }
 
         Shader.SetGlobalFloat(ShaderPropertyIDs.GameSeconds, tm.TicksGame.TicksToSeconds() * mult);
+        /*int wholeTicks = (int)partialTick;                  // ★ how many *real* ticks fit?
+        TickUtility.tickListNormal.DoTick(wholeTicks + 1, firstRun); // ★ feed at least 1
+        TickUtility.tickListRare.DoTick(wholeTicks + 1, firstRun); // ★ ditto
+        TickUtility.tickListLong.DoTick(wholeTicks + 1, firstRun); // ★ ditto*/
+        // always give the normal list *one* step so pawns/stances move
         TickUtility.tickListNormal.DoTick(partialTick, firstRun);
         TickUtility.tickListRare.DoTick(partialTick, firstRun);
         TickUtility.tickListLong.DoTick(partialTick, firstRun);
+
         if (partialTick >= 1.0)
         {
             try
@@ -269,7 +275,7 @@ public static class TimeControlBase
         Debug.developerConsoleVisible = false;
         if (partialTick >= 1.0)
         {
-            TickManagerTick(tm, false);
+            TickManagerTick(tm, 1, false);
         }
     }
 
