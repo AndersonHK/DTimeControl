@@ -62,10 +62,10 @@ public static class Patch_Pawn_TickInterval
 [HarmonyPatch(typeof(Toils_Ingest), nameof(Toils_Ingest.ChewIngestible))]
 public static class Patch_ScaleWork
 {
-    static void Prefix(ref float chewDurationMultiplier)
+    static void Prefix(ref float durationMultiplier)
     {
-        if (TimeControlSettings.slowWork) return;  // keep vanilla pace if user wants
+        if (!TimeControlSettings.slowWork) return;  // keep vanilla pace if user wants
         float S = TimeControlSettings.speedMultiplier;
-        if (S > 1f) chewDurationMultiplier *= S;
+        durationMultiplier *= 1/S;
     }
 }
