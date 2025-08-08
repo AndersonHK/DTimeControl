@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using Verse;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using UnityEngine;   // Mathf
+using Verse;
 
 namespace DTimeControl
 {
@@ -176,6 +178,27 @@ namespace DTimeControl
             if (Mathf.Abs(m - 1f) < 0.001f) return;
 
             __result = (long)(__result / m);
+        }
+    }*/
+    // Example for HourFloat
+
+    /* doesn't seem to do anything, but leaving here for reference
+    [HarmonyPatch(typeof(GenDate), nameof(GenDate.HourFloat))]
+    static class T_HourFloat
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> orig)
+        {
+            float m = Mathf.Max(0.0001f, TimeControlSettings.speedMultiplier);
+            foreach (var ci in orig)
+            {
+                // replace ldc.r4 2500 with 2500f * m
+                if (ci.opcode == OpCodes.Ldc_R4 && (float)ci.operand == 2500f)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, 2500f * m);
+                }
+                else
+                    yield return ci;
+            }
         }
     }*/
 }
